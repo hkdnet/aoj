@@ -23,11 +23,11 @@ class Solver
   end
 
   def solve
-    min = @nums[0]
     greatest_diff = @nums[1] - @nums[0]
-    @nums.drop(2).each do |r|
-      greatest_diff = r - min if greatest_diff < r - min
-      min = r if r < min
+    min = @nums[0, 2].min
+    @nums.drop(2).each do |rj|
+      greatest_diff = rj - min if greatest_diff < rj - min
+      min = rj if rj < min
     end
     puts greatest_diff
   end
