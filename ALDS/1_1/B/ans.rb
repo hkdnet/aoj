@@ -22,11 +22,7 @@ class Solver
   end
 
   def solve
-    while @a * @b != 0
-      @a, @b = [@a, @b].minmax
-      @b = @b % @a
-    end
-    puts [@a, @b].max
+    puts @a.gcd(@b)
   end
 end
 
