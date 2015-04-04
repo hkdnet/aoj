@@ -47,7 +47,11 @@ class Solver
   end
 
   def nums_swap_at(idx)
-    @arr_1[idx - 1], @arr_1[idx] = [@arr_1[idx], @arr_1[idx - 1]]
+    swap(@arr_1, idx - 1, idx)
+  end
+
+  def swap(arr, i, j)
+    arr[i], arr[j] = [arr[j], arr[i]] unless i == j
   end
 
   def selection_sort
