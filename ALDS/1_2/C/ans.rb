@@ -54,7 +54,7 @@ class Solver
     (0...@n).each do |i|
       mini = i
       (i...@n).each { |j| mini = j if rank(@arr_2[j]) < rank(@arr_2[mini]) }
-      @arr_2[i], @arr_2[mini] = [@arr_2[mini], @arr_2[i]] if i != mini
+      swap(@arr_2, mini, i)
     end
     puts @arr_2.join(' ')
   end
