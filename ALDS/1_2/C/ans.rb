@@ -39,6 +39,33 @@ class Card
 end
 
 #
+# expand Array Class
+#
+class Array
+  def swap(i, j)
+    self[i], self[j] = [self[j], self[i]] unless i == j
+  end
+
+  def bubble_sort
+    n = length
+    (0...n).each do |i|
+      (n - 1).downto(i + 1) do |j|
+        swap(j - 1, j) if self[j] < self[j - 1]
+      end
+    end
+  end
+
+  def selection_sort
+    n = length
+    (0...n).each do |i|
+      mini = i
+      (i...n).each { |j| mini = j if self[j] < self[mini] }
+      swap(mini, i)
+    end
+  end
+end
+
+#
 # main logic which has only one public method Solver#solve
 #
 class Solver
@@ -53,36 +80,15 @@ class Solver
   end
 
   def solve
-    bubble_sort(@arr_1)
+    @arr_1.bubble_sort
+    puts @arr_1.join(' ')
     puts 'Stable' # bubble sort is always stable
-    selection_sort(@arr_2)
+    @arr_2.selection_sort
+    puts @arr_2.join(' ')
     puts match?(@arr_1, @arr_2) ? 'Stable' : 'Not stable'
   end
 
   private
-
-  def bubble_sort(arr)
-    (0...@n).each do |i|
-      (@n - 1).downto(i + 1) do |j|
-        swap(arr, j - 1, j) if arr[j] < arr[j - 1]
-      end
-    end
-
-    puts arr.join(' ')
-  end
-
-  def swap(arr, i, j)
-    arr[i], arr[j] = [arr[j], arr[i]] unless i == j
-  end
-
-  def selection_sort(arr)
-    (0...@n).each do |i|
-      mini = i
-      (i...@n).each { |j| mini = j if arr[j] < arr[mini] }
-      swap(arr, mini, i)
-    end
-    puts arr.join(' ')
-  end
 
   def match?(a1, a2)
     a1.zip(a2).all? { |e1, e2| e1.equal?(e2) }
