@@ -53,35 +53,35 @@ class Solver
   end
 
   def solve
-    bubble_sort
+    bubble_sort(@arr_1)
     puts 'Stable' # bubble sort is always stable
-    selection_sort
+    selection_sort(@arr_2)
     puts match?(@arr_1, @arr_2) ? 'Stable' : 'Not stable'
   end
 
   private
 
-  def bubble_sort
+  def bubble_sort(arr)
     (0...@n).each do |i|
       (@n - 1).downto(i + 1) do |j|
-        swap(@arr_1, j - 1, j) if @arr_1[j] < @arr_1[j - 1]
+        swap(arr, j - 1, j) if arr[j] < arr[j - 1]
       end
     end
 
-    puts @arr_1.join(' ')
+    puts arr.join(' ')
   end
 
   def swap(arr, i, j)
     arr[i], arr[j] = [arr[j], arr[i]] unless i == j
   end
 
-  def selection_sort
+  def selection_sort(arr)
     (0...@n).each do |i|
       mini = i
-      (i...@n).each { |j| mini = j if @arr_2[j] < @arr_2[mini] }
-      swap(@arr_2, mini, i)
+      (i...@n).each { |j| mini = j if arr[j] < arr[mini] }
+      swap(arr, mini, i)
     end
-    puts @arr_2.join(' ')
+    puts arr.join(' ')
   end
 
   def match?(a1, a2)
