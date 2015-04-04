@@ -35,7 +35,7 @@ class Solver
   def bubble_sort
     (0...@n).each do |i|
       (@n - 1).downto(i + 1) do |j|
-        rank(@arr_1[j]) < rank(@arr_1[j - 1]) && nums_swap_at(j)
+        swap(@arr_1, j - 1, j) if rank(@arr_1[j]) < rank(@arr_1[j - 1])
       end
     end
 
@@ -44,10 +44,6 @@ class Solver
 
   def rank(card)
     card[1].to_i
-  end
-
-  def nums_swap_at(idx)
-    swap(@arr_1, idx - 1, idx)
   end
 
   def swap(arr, i, j)
