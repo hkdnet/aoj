@@ -60,11 +60,11 @@ module DoublyLinkedList
     def delete(key)
       return delete_first if @head.id == key
       tmp = @head
-      found = @count.times do
-        break true if tmp.id == key
+      not_found = @count.times do
+        break false if tmp.id == key
         tmp = tmp.child
       end
-      return false unless found
+      return false if not_found
       link(tmp.parent, tmp.child)
       @count -= 1
     end
