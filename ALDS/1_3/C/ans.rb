@@ -24,8 +24,6 @@ module DoublyLinkedList
 
     def initialize(id)
       @id = id
-      @parent = self
-      @child = self
     end
   end
 
@@ -50,6 +48,7 @@ module DoublyLinkedList
       n = Node.new(key)
       if @count == 0
         @head = n
+        link(@head, @head)
       else
         link(@head.parent, n)
         link(n, @head)
@@ -59,11 +58,13 @@ module DoublyLinkedList
     end
 
     def delete(key)
+      return delete_first if @head.id == key
       tmp = @head
-      @count.times do
-        break if tmp.id == key
+      found = @count.times do
+        break true if tmp.id == key
         tmp = tmp.child
       end
+      return false unless found
       link(tmp.parent, tmp.child)
       @count -= 1
     end
